@@ -1,20 +1,76 @@
+import 'dart:math' as math;
+
+import 'package:flame/components.dart';
+import 'package:flame/game.dart';
+import 'package:flame/input.dart';
+import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
+import './screens/ember_quest.dart';
+import './overlays/main_menu.dart';
+import './overlays/game_over.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(GameWidget<EmberQuestGame>.controlled(
+    gameFactory: EmberQuestGame.new,
+    overlayBuilderMap: {
+      'MainMenu': (_, game) => MainMenu(game: game),
+      'GameOver': (_, game) => GameOver(game: game),
+    },
+    initialActiveOverlays: const ['MainMenu'],
+  ));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+// class MyGame extends FlameGame with HasTappables {
+//   @override
+//   Future<void> onLoad() async {
+//     add(Square(Vector2(100, 200)));
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   void onTapUp(int id, TapUpInfo info) {
+//     super.onTapUp(id, info);
+//     if (!info.handled) {
+//       final touchPoint = info.eventPosition.game;
+//       add(Square(touchPoint));
+//     }
+//   }
+// }
+
+// class Square extends PositionComponent with Tappable {
+//   static const speed = 0.25;
+//   static const squareSize = 128.0;
+
+//   static Paint white = BasicPalette.white.paint();
+//   static Paint red = BasicPalette.red.paint();
+//   static Paint blue = BasicPalette.blue.paint();
+
+//   Square(Vector2 position) : super(position: position);
+
+//   @override
+//   void render(Canvas c) {
+//     c.drawRect(size.toRect(), white);
+//     c.drawRect(const Rect.fromLTWH(0, 0, 3, 3), red);
+//     c.drawRect(Rect.fromLTWH(width / 2, height / 2, 3, 3), blue);
+//   }
+
+//   @override
+//   void update(double dt) {
+//     super.update(dt);
+//     angle += speed * dt;
+//     angle %= 2 * math.pi;
+//   }
+
+//   @override
+//   Future<void> onLoad() async {
+//     super.onLoad();
+//     size.setValues(squareSize, squareSize);
+//     anchor = Anchor.center;
+//   }
+
+//   @override
+//   bool onTapUp(TapUpInfo info) {
+//     removeFromParent();
+//     info.handled = true;
+//     return true;
+//   }
+// }
