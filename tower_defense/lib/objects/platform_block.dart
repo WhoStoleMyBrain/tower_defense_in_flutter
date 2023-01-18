@@ -12,7 +12,6 @@ class PlatformBlock extends SpriteComponent with HasGameRef<EmberQuestGame> {
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     final platformImage = game.images.fromCache('block.png');
     sprite = Sprite(platformImage);
     position = Vector2(
@@ -20,11 +19,11 @@ class PlatformBlock extends SpriteComponent with HasGameRef<EmberQuestGame> {
       game.size.y - (gridPosition.y * size.y),
     );
     add(RectangleHitbox()..collisionType = CollisionType.passive);
+    return super.onLoad();
   }
 
   @override
   void update(double dt) {
-    // TODO: implement update
     if (game.health <= 0) {
       removeFromParent();
     }

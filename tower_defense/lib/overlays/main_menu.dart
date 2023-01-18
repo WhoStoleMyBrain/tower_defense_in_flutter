@@ -20,13 +20,16 @@ class MainMenu extends StatelessWidget {
           width: 300,
           decoration: const BoxDecoration(
               color: blackTextColor,
-              borderRadius: const BorderRadius.all(Radius.circular(20))),
+              borderRadius: BorderRadius.all(Radius.circular(20))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 'Ember Quest',
-                style: TextStyle(color: whiteTextColor, fontSize: 24),
+                style: TextStyle(
+                  color: whiteTextColor,
+                  fontSize: 24,
+                ),
               ),
               const SizedBox(
                 height: 40,

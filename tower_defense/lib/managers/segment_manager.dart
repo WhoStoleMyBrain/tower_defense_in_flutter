@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
-import 'package:tower_defense/actors/water_enemy.dart';
-import 'package:tower_defense/objects/ground_block.dart';
-import 'package:tower_defense/objects/platform_block.dart';
-import 'package:tower_defense/objects/star.dart';
+import '../actors/water_enemy.dart';
+import '../objects/ground_block.dart';
+import '../objects/platform_block.dart';
+import '../objects/star.dart';
 
 class Block {
   final Vector2 gridPosition;
@@ -20,6 +20,9 @@ final segments = [
 
 final segment0 = [
   Block(Vector2(0, 0), GroundBlock),
+  Block(Vector2(0, 3), PlatformBlock),
+  Block(Vector2(1, 3), PlatformBlock),
+  Block(Vector2(2, 3), PlatformBlock),
   Block(Vector2(1, 0), GroundBlock),
   Block(Vector2(2, 0), GroundBlock),
   Block(Vector2(3, 0), GroundBlock),

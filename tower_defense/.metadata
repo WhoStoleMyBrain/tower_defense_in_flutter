@@ -4,8 +4,8 @@
 # This file should be version controlled.
 
 version:
-  revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-  channel: master
+  revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+  channel: stable
 
 project_type: app
 
@@ -13,26 +13,26 @@ project_type: app
 migration:
   platforms:
     - platform: root
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: android
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: ios
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: linux
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: macos
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: web
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
     - platform: windows
-      create_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
-      base_revision: 91aeda7bf6f977207d7ac07ca46c26560007a244
+      create_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
+      base_revision: 6928314d505d2bb4777be05e45d7808a5aa91d2a
 
   # User provided section
 

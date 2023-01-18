@@ -14,7 +14,6 @@ class WaterEnemy extends SpriteAnimationComponent
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     animation = SpriteAnimation.fromFrameData(
         game.images.fromCache('water_enemy.png'),
         SpriteAnimationData.sequenced(
@@ -24,11 +23,11 @@ class WaterEnemy extends SpriteAnimationComponent
     add(RectangleHitbox()..collisionType = CollisionType.passive);
     add(MoveEffect.by(Vector2(-2 * size.x, 0),
         EffectController(duration: 3, alternate: true, infinite: true)));
+    return super.onLoad();
   }
 
   @override
   void update(double dt) {
-    // TODO: implement update
     velocity.x = game.objectSpeed;
     position += velocity * dt;
     if (position.x < -size.x || game.health <= 0) {

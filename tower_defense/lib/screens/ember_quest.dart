@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +24,6 @@ class EmberQuestGame extends FlameGame
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     await images.loadAll([
       'block.png',
       'ember.png',
@@ -35,13 +32,17 @@ class EmberQuestGame extends FlameGame
       'heart.png',
       'star.png',
       'water_enemy.png',
+      '203.jpg',
+      '209.jpg',
+      '243.jpg',
+      '235.jpg',
+      '245.jpg',
     ]);
     initializeGame(true);
   }
 
   @override
   Color backgroundColor() {
-    // TODO: implement backgroundColor
     return const Color.fromARGB(255, 173, 233, 247);
   }
 
@@ -89,7 +90,6 @@ class EmberQuestGame extends FlameGame
 
   @override
   void update(double dt) {
-    // TODO: implement update
     if (health <= 0) {
       overlays.add('GameOver');
     }

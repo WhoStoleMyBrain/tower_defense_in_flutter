@@ -15,7 +15,6 @@ class Star extends SpriteComponent with HasGameRef<EmberQuestGame> {
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     final starImage = game.images.fromCache('star.png');
     sprite = Sprite(starImage);
     position = Vector2(
@@ -34,7 +33,6 @@ class Star extends SpriteComponent with HasGameRef<EmberQuestGame> {
 
   @override
   void update(double dt) {
-    // TODO: implement update
     velocity.x = game.objectSpeed;
     position += velocity * dt;
     if (position.x < -size.x || game.health <= 0) {

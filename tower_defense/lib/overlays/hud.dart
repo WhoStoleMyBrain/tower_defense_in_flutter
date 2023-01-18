@@ -48,7 +48,6 @@ class Hud extends PositionComponent with HasGameRef<EmberQuestGame> {
 
   @override
   void update(double dt) {
-    // TODO: implement update
     _scoreTextComponent.text = '${game.starsCollected}';
     super.update(dt);
   }

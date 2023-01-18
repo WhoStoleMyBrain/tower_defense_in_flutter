@@ -2,11 +2,9 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/services.dart';
-import 'package:flame/collisions.dart';
-import 'package:tower_defense/actors/water_enemy.dart';
+import '../actors/water_enemy.dart';
 import '../objects/ground_block.dart';
 import '../objects/platform_block.dart';
-// import 'package:flame/events.dart';
 import '../objects/star.dart';
 import '../screens/ember_quest.dart';
 
@@ -41,8 +39,7 @@ class EmberPlayer extends SpriteAnimationComponent
   }
 
   @override
-  Future<void>? onLoad() {
-    // TODO: implement onLoad
+  Future<void>? onLoad() async {
     animation = SpriteAnimation.fromFrameData(
       game.images.fromCache('ember.png'),
       SpriteAnimationData.sequenced(
@@ -52,11 +49,11 @@ class EmberPlayer extends SpriteAnimationComponent
       ),
     );
     add(CircleHitbox());
+    return super.onLoad();
   }
 
   @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    // TODO: implement onKeyEvent
     horizontalDirection = 0;
     horizontalDirection += (keysPressed.contains(LogicalKeyboardKey.keyA) ||
             keysPressed.contains(LogicalKeyboardKey.arrowLeft))
@@ -72,7 +69,6 @@ class EmberPlayer extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    // TODO: implement update
     if (position.y > game.size.y + size.y) {
       game.health = 0;
     }
@@ -81,7 +77,6 @@ class EmberPlayer extends SpriteAnimationComponent
     }
     velocity.x = horizontalDirection * moveSpeed;
     velocity.y += gravity;
-    // print('horizontalDirection: $horizontalDirection');
 
     if (hasJumped) {
       if (isOnGround) {
@@ -112,7 +107,6 @@ class EmberPlayer extends SpriteAnimationComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    // TODO: implement onCollision
     if (other is GroundBlock || other is PlatformBlock) {
       if (intersectionPoints.length == 2) {
         final mid = (intersectionPoints.elementAt(0) +
@@ -134,7 +128,13 @@ class EmberPlayer extends SpriteAnimationComponent
     }
 
     if (other is WaterEnemy) {
-      hit();
+      if (other.position.y - position.y > 0 && velocity.y > 0) {
+        game.starsCollected++;
+        other.removeFromParent();
+        velocity.y = -jumpSpeed;
+      } else {
+        hit();
+      }
     }
     super.onCollision(intersectionPoints, other);
   }

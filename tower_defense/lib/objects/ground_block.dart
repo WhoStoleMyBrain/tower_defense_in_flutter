@@ -18,7 +18,6 @@ class GroundBlock extends SpriteComponent with HasGameRef<EmberQuestGame> {
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     final groundImage = game.images.fromCache('ground.png');
     sprite = Sprite(groundImage);
     position = Vector2((gridPosition.x * size.x) + xOffset,
@@ -28,11 +27,11 @@ class GroundBlock extends SpriteComponent with HasGameRef<EmberQuestGame> {
       game.lastBlockKey = _blockKey;
       game.lastBlockXPosition = position.x + size.x;
     }
+    return super.onLoad();
   }
 
   @override
   void update(double dt) {
-    // TODO: implement update
     if (game.health <= 0) {
       removeFromParent();
     }

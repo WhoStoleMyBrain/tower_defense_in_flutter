@@ -22,7 +22,6 @@ class HeartHealthComponent extends SpriteGroupComponent<HeartState>
 
   @override
   Future<void>? onLoad() async {
-    // TODO: implement onLoad
     await super.onLoad();
     final availableSprite =
         await game.loadSprite('heart.png', srcSize: Vector2.all(32));
@@ -33,11 +32,11 @@ class HeartHealthComponent extends SpriteGroupComponent<HeartState>
       HeartState.unavailable: unavailableSprite,
     };
     current = HeartState.available;
+    return super.onLoad();
   }
 
   @override
   void update(double dt) {
-    // TODO: implement update
     if (game.health < heartNumber) {
       current = HeartState.unavailable;
     } else {
