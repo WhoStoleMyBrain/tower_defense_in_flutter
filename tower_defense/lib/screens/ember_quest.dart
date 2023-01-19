@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/widgets.dart';
+import 'package:tower_defense/objects/background_texture.dart';
 import '../actors/ember.dart';
 import '../actors/water_enemy.dart';
 import '../objects/ground_block.dart';
@@ -48,23 +49,54 @@ class EmberQuestGame extends FlameGame
 
   void loadGameSegments(int segmentIndex, double xPositionOffset) {
     for (final block in segments[segmentIndex]) {
-      switch (block.blockType) {
-        case GroundBlock:
-          add(GroundBlock(
-              gridPosition: block.gridPosition, xOffset: xPositionOffset));
-          break;
-        case PlatformBlock:
-          add(PlatformBlock(
-              gridPosition: block.gridPosition, xOffset: xPositionOffset));
-          break;
-        case Star:
-          add(Star(gridPosition: block.gridPosition, xOffset: xPositionOffset));
-          break;
-        case WaterEnemy:
-          add(WaterEnemy(
-              gridPosition: block.gridPosition, xOffset: xPositionOffset));
-          break;
-      }
+      if (block.gridPositions.length == 1) {
+        switch (block.blockType) {
+          case GroundBlock:
+            add(GroundBlock(
+                gridPosition: block.gridPositions.first,
+                xOffset: xPositionOffset));
+            break;
+          case PlatformBlock:
+            add(PlatformBlock(
+                gridPosition: block.gridPositions.first,
+                xOffset: xPositionOffset));
+            break;
+          case Star:
+            add(Star(
+                gridPosition: block.gridPositions.first,
+                xOffset: xPositionOffset));
+            break;
+          case WaterEnemy:
+            add(WaterEnemy(
+                gridPosition: block.gridPositions.first,
+                xOffset: xPositionOffset));
+            break;
+          case BackgroundTexture:
+            add(BackgroundTexture(
+                gridPosition: block.gridPositions.first,
+                xOffset: xPositionOffset,
+                imageName: block.textureName));
+            break;
+        }
+      } else if (block.gridPositions.length == 2) {
+        switch (block.blockType) {
+          case BackgroundTexture:
+            final startX = block.gridPositions.first.x;
+            final endX = block.gridPositions.last.x;
+
+            final startY = block.gridPositions.first.y;
+            final endY = block.gridPositions.last.y;
+            for (double x = startX; x < endX; x++) {
+              for (double y = startY; y < endY; y++) {
+                add(BackgroundTexture(
+                    gridPosition: Vector2(x, y),
+                    xOffset: xPositionOffset,
+                    imageName: block.textureName));
+              }
+            }
+            break;
+        }
+      } else {}
     }
   }
 
