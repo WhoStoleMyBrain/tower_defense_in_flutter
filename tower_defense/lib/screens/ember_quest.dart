@@ -2,19 +2,21 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tower_defense/objects/background_texture.dart';
-import '../actors/ember.dart';
+// import '../actors/ember.dart';
+import '../actors/arrow_tower.dart';
 import '../actors/water_enemy.dart';
 import '../objects/ground_block.dart';
 import '../objects/platform_block.dart';
 import '../objects/star.dart';
 import '../managers/segment_manager.dart';
 import '../overlays/hud.dart';
+import '../projectiles/arrow.dart';
 
 class EmberQuestGame extends FlameGame
     with HasCollisionDetection, HasKeyboardHandlerComponents {
   EmberQuestGame();
 
-  late EmberPlayer _ember;
+  // late EmberPlayer _ember;
   double objectSpeed = 0.0;
 
   late double lastBlockXPosition = 0.0;
@@ -26,18 +28,23 @@ class EmberQuestGame extends FlameGame
   @override
   Future<void>? onLoad() async {
     await images.loadAll([
-      'block.png',
-      'ember.png',
-      'ground.png',
+      // 'block.png',
+      // 'ember.png',
+      // 'ground.png',
       'heart_half.png',
       'heart.png',
       'star.png',
-      'water_enemy.png',
+      // 'water_enemy.png',
       '203.jpg',
       '209.jpg',
-      '243.jpg',
-      '235.jpg',
-      '245.jpg',
+      // '243.jpg',
+      // '235.jpg',
+      // '245.jpg',
+      'towerDefense_tilesheet.png'
+      // 0,0 at top left
+      // 2944 x 1664
+      // 23 x 13
+      // -> 128 x 128
     ]);
     initializeGame(true);
   }
@@ -51,13 +58,13 @@ class EmberQuestGame extends FlameGame
     for (final block in segments[segmentIndex]) {
       if (block.gridPositions.length == 1) {
         switch (block.blockType) {
-          case GroundBlock:
-            add(GroundBlock(
+          case ArrowTower:
+            add(ArrowTower(
                 gridPosition: block.gridPositions.first,
                 xOffset: xPositionOffset));
             break;
-          case PlatformBlock:
-            add(PlatformBlock(
+          case Arrow:
+            add(Arrow(
                 gridPosition: block.gridPositions.first,
                 xOffset: xPositionOffset));
             break;
@@ -66,11 +73,7 @@ class EmberQuestGame extends FlameGame
                 gridPosition: block.gridPositions.first,
                 xOffset: xPositionOffset));
             break;
-          case WaterEnemy:
-            add(WaterEnemy(
-                gridPosition: block.gridPositions.first,
-                xOffset: xPositionOffset));
-            break;
+
           case BackgroundTexture:
             add(BackgroundTexture(
                 gridPosition: block.gridPositions.first,
@@ -101,13 +104,17 @@ class EmberQuestGame extends FlameGame
   }
 
   void initializeGame(bool loadHud) {
-    final segmentsToLoad = (size.x / 640).ceil();
+    const segmentsToLoad = 0;
+    // final segmentsToLoad = (size.x / 640).ceil();
     segmentsToLoad.clamp(0, segments.length);
+    // print(
+    //     'segmentsToLoad $segmentsToLoad, segments.length: ${segments.length}');
     for (var i = 0; i <= segmentsToLoad; i++) {
+      // print(i);
       loadGameSegments(i, (640 * i).toDouble());
     }
-    _ember = EmberPlayer(position: Vector2(128, canvasSize.y - 128));
-    add(_ember);
+    // _ember = EmberPlayer(position: Vector2(128, canvasSize.y - 128));
+    // add(_ember);
     add(Hud());
     if (loadHud) {
       add(Hud());

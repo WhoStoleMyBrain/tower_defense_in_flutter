@@ -1,9 +1,11 @@
 import 'package:flame/components.dart';
+import '../actors/arrow_tower.dart';
 import '../objects/background_texture.dart';
 import '../actors/water_enemy.dart';
 import '../objects/ground_block.dart';
 import '../objects/platform_block.dart';
 import '../objects/star.dart';
+import '../projectiles/arrow.dart';
 
 class Block {
   final List<Vector2> gridPositions;
@@ -13,17 +15,15 @@ class Block {
 }
 
 final segments = [
-  segment0,
   segment_1,
-  // segment_0,
-  segment1,
-  segment2,
-  segment3,
-  segment4,
+  // segment_1,
+  // segment_1,
 ];
 
 final segment_1 = [
-  Block([Vector2(0, 0), Vector2(15, 15)], BackgroundTexture,
+  Block([Vector2(2, 2)], Arrow),
+  Block([Vector2(3, 3)], ArrowTower),
+  Block([Vector2(4, 4), Vector2(16, 16)], BackgroundTexture,
       textureName: '209.jpg'),
 ];
 
