@@ -1,9 +1,5 @@
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/effects.dart';
-import 'package:flutter/material.dart';
 import 'dart:math';
-
 import '../screens/ember_quest.dart';
 
 class Arrow extends SpriteComponent with HasGameRef<EmberQuestGame> {
@@ -12,7 +8,8 @@ class Arrow extends SpriteComponent with HasGameRef<EmberQuestGame> {
   Arrow({required this.gridPosition, required this.xOffset})
       : super(size: Vector2.all(64), anchor: Anchor.center);
 
-  final Vector2 velocity = Vector2(-10, -10);
+  final Vector2 velocity = Vector2(-20, -20);
+  double rotation = 80;
 
   @override
   Future<void>? onLoad() async {
@@ -27,16 +24,12 @@ class Arrow extends SpriteComponent with HasGameRef<EmberQuestGame> {
 
   @override
   void update(double dt) {
-    // velocity.x = game.objectSpeed;
     position += velocity * dt;
-    angle = -atan(velocity.y / velocity.x);
-    // if (velocity.y <= 0) {
-    //   flipVertically();
-    // }
-    // if (velocity.x <= 0) {
-    //   flipHorizontally();
-    // }
-    print(angle);
+    angle = velocity.x < 0
+        ? atan(velocity.y / velocity.x) + pi / 2
+        : atan(velocity.y / velocity.x) - pi / 2;
+    velocity.rotate(pi * dt * rotation / 50);
+    if (rotation > 10) rotation--;
     if (position.x < -size.x || game.health <= 0) {
       removeFromParent();
     }

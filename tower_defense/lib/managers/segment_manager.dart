@@ -22,7 +22,8 @@ final segments = [
 
 final segment_1 = [
   Block([Vector2(2, 2)], Arrow),
-  Block([Vector2(3, 3)], ArrowTower),
+  Block([Vector2(1, 8)], ArrowTower),
+  Block([Vector2(19, 8)], ArrowTower),
   Block([Vector2(4, 4), Vector2(16, 16)], BackgroundTexture,
       textureName: '209.jpg'),
 ];

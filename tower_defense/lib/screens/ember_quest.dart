@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/widgets.dart';
@@ -52,6 +53,10 @@ class EmberQuestGame extends FlameGame
   @override
   Color backgroundColor() {
     return const Color.fromARGB(255, 173, 233, 247);
+  }
+
+  void addGameSegment(Component component) {
+    add(component);
   }
 
   void loadGameSegments(int segmentIndex, double xPositionOffset) {
