@@ -2,20 +2,28 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tower_defense/objects/background_texture.dart';
+import 'package:tower_defense/components/objects/background_texture.dart';
 // import '../actors/ember.dart';
-import '../actors/arrow_tower.dart';
-import '../actors/water_enemy.dart';
-import '../objects/ground_block.dart';
-import '../objects/platform_block.dart';
-import '../objects/star.dart';
+import '../components/actors/arrow_tower.dart';
+import '../components/actors/water_enemy.dart';
+import '../components/objects/ground_block.dart';
+import '../components/objects/platform_block.dart';
+import '../components/objects/star.dart';
+import '../managers/game_state_manager.dart';
 import '../managers/segment_manager.dart';
 import '../overlays/hud.dart';
-import '../projectiles/arrow.dart';
+import '../components/projectiles/arrow.dart';
 
 class EmberQuestGame extends FlameGame
     with HasCollisionDetection, HasKeyboardHandlerComponents {
-  EmberQuestGame();
+  final GameStateManager gameStateManager;
+  EmberQuestGame()
+      : gameStateManager = GameStateManager(health: 100, score: 0, level: 1) {
+    // Pass the gameStateManager instance to other components as needed
+  }
+
+  List<ArrowTower> arrowTowers = [];
+  List<Arrow> arrows = [];
 
   // late EmberPlayer _ember;
   double objectSpeed = 0.0;
@@ -110,16 +118,10 @@ class EmberQuestGame extends FlameGame
 
   void initializeGame(bool loadHud) {
     const segmentsToLoad = 0;
-    // final segmentsToLoad = (size.x / 640).ceil();
     segmentsToLoad.clamp(0, segments.length);
-    // print(
-    //     'segmentsToLoad $segmentsToLoad, segments.length: ${segments.length}');
     for (var i = 0; i <= segmentsToLoad; i++) {
-      // print(i);
       loadGameSegments(i, (640 * i).toDouble());
     }
-    // _ember = EmberPlayer(position: Vector2(128, canvasSize.y - 128));
-    // add(_ember);
     add(Hud());
     if (loadHud) {
       add(Hud());
@@ -138,5 +140,32 @@ class EmberQuestGame extends FlameGame
       overlays.add('GameOver');
     }
     super.update(dt);
+    updateComponents(dt);
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    renderComponents(canvas);
+  }
+
+  void updateComponents(double dt) {
+    for (ArrowTower arrowTower in arrowTowers) {
+      arrowTower.update(dt);
+    }
+
+    for (Arrow arrow in arrows) {
+      arrow.update(dt);
+    }
+  }
+
+  void renderComponents(Canvas canvas) {
+    for (ArrowTower arrowTower in arrowTowers) {
+      arrowTower.render(canvas);
+    }
+
+    for (Arrow arrow in arrows) {
+      arrow.render(canvas);
+    }
   }
 }

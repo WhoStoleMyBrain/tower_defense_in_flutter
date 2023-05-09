@@ -6,7 +6,7 @@ import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import '../projectiles/arrow.dart';
 
-import '../screens/ember_quest.dart';
+import '../../screens/ember_quest.dart';
 
 class ArrowTower extends SpriteComponent with HasGameRef<EmberQuestGame> {
   final Vector2 gridPosition;
@@ -53,7 +53,8 @@ class ArrowTower extends SpriteComponent with HasGameRef<EmberQuestGame> {
   void update(double dt) {
     velocity.x = game.objectSpeed;
     position += velocity * dt;
-    if (position.x < -size.x || game.health <= 0) {
+    if (position.x < -size.x || game.gameStateManager.health <= 0) {
+      game.gameStateManager.decreaseHealth(1);
       removeFromParent();
     }
     super.update(dt);

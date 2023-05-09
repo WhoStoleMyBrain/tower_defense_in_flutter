@@ -3,7 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/ember_quest.dart';
+import '../../screens/ember_quest.dart';
 
 class Star extends SpriteComponent with HasGameRef<EmberQuestGame> {
   final Vector2 gridPosition;

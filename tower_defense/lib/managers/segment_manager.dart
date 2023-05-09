@@ -1,11 +1,11 @@
 import 'package:flame/components.dart';
-import '../actors/arrow_tower.dart';
-import '../objects/background_texture.dart';
-import '../actors/water_enemy.dart';
-import '../objects/ground_block.dart';
-import '../objects/platform_block.dart';
-import '../objects/star.dart';
-import '../projectiles/arrow.dart';
+import '../components/actors/arrow_tower.dart';
+import '../components/objects/background_texture.dart';
+import '../components/actors/water_enemy.dart';
+import '../components/objects/ground_block.dart';
+import '../components/objects/platform_block.dart';
+import '../components/objects/star.dart';
+import '../components/projectiles/arrow.dart';
 
 class Block {
   final List<Vector2> gridPositions;

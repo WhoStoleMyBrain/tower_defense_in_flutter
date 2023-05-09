@@ -1,7 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import '../screens/ember_quest.dart';
+import '../../screens/ember_quest.dart';
 
 class WaterEnemy extends SpriteAnimationComponent
     with HasGameRef<EmberQuestGame> {

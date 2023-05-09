@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'dart:math';
-import '../screens/ember_quest.dart';
+import '../../screens/ember_quest.dart';
 
 class Arrow extends SpriteComponent with HasGameRef<EmberQuestGame> {
   final Vector2 gridPosition;
